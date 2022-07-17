@@ -1,4 +1,5 @@
-from ..util.k8s_util import get_k8s_namespaces, get_k8s_deployments
+from .validate_service import validate_duplicate_namespace, validate_namespace, validate_create_namespace_request
+from ..util.k8s_util import get_k8s_namespaces, get_k8s_deployments, create_k8s_namespace
 
 
 def get_namespaces():
@@ -19,6 +20,7 @@ def determine_deployment_status(deployment_status):
 
 
 def get_deployments(namespace):
+    validate_namespace(namespace, get_namespaces())
     deployments = get_k8s_deployments(namespace)
     items = deployments.items
     deployment_list = []
@@ -26,3 +28,9 @@ def get_deployments(namespace):
         status = determine_deployment_status(item.status)
         deployment_list.append({'name': item.metadata.name, 'status': status})
     return deployment_list
+
+
+def create_namespace(request_json):
+    validate_create_namespace_request(request_json)
+    validate_duplicate_namespace(request_json['name'], get_namespaces())
+    create_k8s_namespace(request_json['name'])

@@ -19,7 +19,7 @@ def get_k8s_namespaces():
         return response
     except kubernetes.client.exceptions.ApiException as api_exception:
         logger.exception(api_exception, extra={'stack': True})
-        raise InternalServerError('Error while Retrieving namespaces from cluster', 500)
+        raise InternalServerError('Error while Retrieving namespaces from cluster')
 
 
 def get_k8s_deployments(namespace):
@@ -35,4 +35,21 @@ def get_k8s_deployments(namespace):
         return response
     except kubernetes.client.exceptions.ApiException as api_exception:
         logger.exception(api_exception, extra={'stack': True})
-        raise InternalServerError('Error while Retrieving deployments from cluster', 500)
+        raise InternalServerError('Error while Retrieving deployments from cluster')
+
+
+def create_k8s_namespace(namespace):
+    try:
+        config.load_kube_config()
+    except Exception as exception:
+        logger.info('Unable to load kube config... Trying to load incluster config')
+        config.load_incluster_config()
+    core_api_client = client.CoreV1Api()
+    v1_namespace = client.V1Namespace(metadata=client.V1ObjectMeta(name=namespace))
+    try:
+        response = core_api_client.create_namespace(body=v1_namespace)
+        logger.debug(response)
+        return response
+    except kubernetes.client.exceptions.ApiException as api_exception:
+        logger.exception(api_exception, extra={'stack': True})
+        raise InternalServerError('Error while Creating namespace on cluster')
