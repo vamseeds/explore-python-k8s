@@ -1,0 +1,2 @@
+kubectl run tes-pod --image nicolaka/netshoot --command sleep 9999
+kubectl exec -it tes-pod -- /bin/bash
