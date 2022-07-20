@@ -3,8 +3,11 @@ from flask import jsonify
 from ..service.project_service import get_namespaces, get_deployments, create_namespace
 from ..util.log_util import get_logger
 from flask_negotiate import consumes
+from flask_cors import CORS
 
 project = Blueprint('project', __name__, url_prefix='/projects')
+
+CORS(project)
 
 logger = get_logger()
 
