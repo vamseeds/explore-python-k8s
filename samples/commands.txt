@@ -1,3 +1,5 @@
 kubectl run tes-pod --image nicolaka/netshoot --command sleep 9999
 kubectl exec -it tes-pod -- /bin/bash
 kubectl get svc -n poc
+sudo docker build -t vamseeds/explore-python-k8s:latest .
+sudo docker push docker.io/vamseeds/explore-python-k8s:latest
