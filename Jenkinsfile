@@ -1,4 +1,4 @@
-node {
+pipeline {
     def app
     agent {
         docker { image 'docker:latest' }
