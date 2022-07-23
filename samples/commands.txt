@@ -7,4 +7,4 @@ curl jenkins-service.jenkins.svc.cluster.local:9090
 kubectl debug node/<nodeid> -it --image=busybox
 kubectl debug node/<nodeid> -it image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
 <jenkinsUrl>/crumbIssuer/api/json
-
+<jenkinsUrl>/env-vars.html/ - to see all default available env vars of jenkins
