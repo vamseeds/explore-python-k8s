@@ -3,3 +3,8 @@ kubectl exec -it tes-pod -- /bin/bash
 kubectl get svc -n poc
 sudo docker build -t vamseeds/explore-python-k8s:latest .
 sudo docker push docker.io/vamseeds/explore-python-k8s:latest
+curl jenkins-service.jenkins.svc.cluster.local:9090
+kubectl debug node/<nodeid> -it --image=busybox
+kubectl debug node/<nodeid> -it image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
+<jenkinsUrl>/crumbIssuer/api/json
+
