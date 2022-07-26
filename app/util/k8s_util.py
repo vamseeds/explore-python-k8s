@@ -10,7 +10,7 @@ def get_k8s_namespaces():
     try:
         config.load_kube_config()
     except Exception as exception:
-        logger.info('Unable to load kube config... Trying to load incluster config')
+        logger.info(f'Unable to load kube config... Trying to load incluster config :{exception}')
         config.load_incluster_config()
     core_api_client = client.CoreV1Api()
     try:
@@ -26,7 +26,7 @@ def get_k8s_deployments(namespace):
     try:
         config.load_kube_config()
     except Exception as exception:
-        logger.info('Unable to load kube config... Trying to load incluster config')
+        logger.info(f'Unable to load kube config... Trying to load incluster config {exception}')
         config.load_incluster_config()
     apps_api_client = client.AppsV1Api()
     try:
@@ -42,7 +42,7 @@ def create_k8s_namespace(namespace):
     try:
         config.load_kube_config()
     except Exception as exception:
-        logger.info('Unable to load kube config... Trying to load incluster config')
+        logger.info(f'Unable to load kube config... Trying to load incluster config {exception}')
         config.load_incluster_config()
     core_api_client = client.CoreV1Api()
     v1_namespace = client.V1Namespace(metadata=client.V1ObjectMeta(name=namespace))

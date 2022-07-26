@@ -1,0 +1,48 @@
+{
+  '_class': 'hudson.model.Hudson',
+  'assignedLabels': [
+    {
+      'name': 'built-in'
+    }
+  ],
+  'mode': 'NORMAL',
+  'nodeDescription': "the Jenkins controller's built-in node",
+  'nodeName': '',
+  'numExecutors': 2,
+  'description': None,
+  'jobs': [
+    {
+      '_class': 'org.jenkinsci.plugins.workflow.job.WorkflowJob',
+      'name': 'dsr_job',
+      'url': 'http://a62b0b4c2561547558f91d509650c461-240584508.us-west-1.elb.amazonaws.com:8080/job/dsr_job/',
+      'color': 'blue'
+    },
+    {
+      '_class': 'org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject',
+      'name': 'poc',
+      'url': 'http://a62b0b4c2561547558f91d509650c461-240584508.us-west-1.elb.amazonaws.com:8080/job/poc/'
+    }
+  ],
+  'overallLoad': {},
+  'primaryView': {
+    '_class': 'hudson.model.AllView',
+    'name': 'all',
+    'url': 'http://a62b0b4c2561547558f91d509650c461-240584508.us-west-1.elb.amazonaws.com:8080/'
+  },
+  'quietDownReason': None,
+  'quietingDown': False,
+  'slaveAgentPort': 50000,
+  'unlabeledLoad': {
+    '_class': 'jenkins.model.UnlabeledLoadStatistics'
+  },
+  'url': None,
+  'useCrumbs': True,
+  'useSecurity': True,
+  'views': [
+    {
+      '_class': 'hudson.model.AllView',
+      'name': 'all',
+      'url': 'http://a62b0b4c2561547558f91d509650c461-240584508.us-west-1.elb.amazonaws.com:8080/'
+    }
+  ]
+}
